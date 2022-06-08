@@ -3,7 +3,7 @@ use crate::*;
 const STARTING_POSITION: &str = "cheagaehc//1r5r/s1s1s1s1s///S1S1S1S1S/1R5R//CHEAGAEHC";
 
 pub fn create_new_board() -> (
-    &'static [Option<&'static game::piece::Piece>; 90],
+    [Option<game::piece::Piece>; 90],
     &'static Vec<&'static game::Piece>,
     &'static Vec<&'static game::Piece>,
 ) {
@@ -33,6 +33,7 @@ pub fn create_new_board() -> (
                     'g' => game::PieceType::General,
                     'r' => game::PieceType::Cannon,
                     's' => game::PieceType::Soldier,
+                    _ => unreachable!(),
                 },
                 piece_tile: index,
             };
@@ -43,11 +44,11 @@ pub fn create_new_board() -> (
                 black_player_pieces.push(&piece);
             };
 
-            board[index] = Some(&piece);
+            board[index] = Some(piece);
 
             index += 1;
         }
     });
 
-    return (&board, &red_player_pieces, &black_player_pieces);
+    return (board, &red_player_pieces, &black_player_pieces);
 }

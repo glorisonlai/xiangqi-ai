@@ -33,14 +33,14 @@ fn soldier_crossed_river(piece: Piece, position: u8) -> bool {
 
 fn get_piece_value(piece: Piece, position: u8) -> u8 {
     match piece.piece_type {
-        General => 99,
-        Advisor => 2,
-        Elephant => 2,
-        Soldier => soldier_crossed_river(piece, position)
+        PieceType::General => 99,
+        PieceType::Advisor => 2,
+        PieceType::Elephant => 2,
+        PieceType::Soldier => soldier_crossed_river(piece, position)
             .then(|| 2)
             .unwrap_or(1),
-        Horse => 4,
-        Cannon => 5,
-        Chariot => 10,
+        PieceType::Horse => 4,
+        PieceType::Cannon => 5,
+        PieceType::Chariot => 10,
     }
 }
